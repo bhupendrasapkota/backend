@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 import environ
+from datetime import timedelta
 
 env = environ.Env()
 
@@ -33,6 +34,7 @@ INSTALLED_APPS = [
     'apps.photo_collections',
     'apps.photos',
     'apps.users',
+    'apps.authentication',
 ]
 
 MIDDLEWARE = [
@@ -104,3 +106,19 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Added settings
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),  # Shorter access token lifetime
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    'ROTATE_REFRESH_TOKENS': True,  # Enable token rotation
+    'BLACKLIST_AFTER_ROTATION': True,  # Blacklist old tokens after rotation
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}

@@ -2,7 +2,7 @@ from django.db import models
 
 class Photos(models.Model):
     id = models.UUIDField(primary_key=True)
-    user = models.ForeignKey('Users', models.DO_NOTHING)
+    user = models.ForeignKey('users.User', models.DO_NOTHING)
     image_url = models.TextField()
     title = models.CharField(max_length=255, blank=True, null=True)
     description = models.TextField(blank=True, null=True)

@@ -1,8 +1,8 @@
 from django.db import models
 
 class Likes(models.Model):
-    user = models.ForeignKey('Users', models.DO_NOTHING)
-    photo = models.ForeignKey('Photos', models.DO_NOTHING)
+    user = models.ForeignKey('users.user', models.DO_NOTHING)
+    photo = models.ForeignKey('photos.Photos', models.DO_NOTHING)
     liked_at = models.DateTimeField(blank=True, null=True)
 
     class Meta:
